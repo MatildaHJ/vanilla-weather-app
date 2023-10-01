@@ -10,13 +10,54 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <script
+      src="https://kit.fontawesome.com/74cbe10470.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="src/styles.css" />
     <title>Weather App</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Weather app</h1>
-      <a href="" class="btn btn-primary">Click me</a>
+    <div class="container" id="bgImage">
+      <div class="row">
+        <div class="col-8">
+          <div class="search-container">
+            <form id="search-form">
+              <input
+                type="text"
+                placeholder="Enter a city.."
+                class="form"
+                autofocus="on"
+                id="search-text-input"
+              />
+              <input type="submit" value="Search" class="button form" />
+            </form>
+            <button type="button" id="currentButton" class="btn btn-dark">
+              <i class="fa-solid fa-location-dot"></i>
+            </button>
+          </div>
+          <h1>Stockholm</h1>
+          <div class="timeDate">Sunday, oct 20, 14:55</div>
+          <br />
+          <br />
+          <p><span class="degrees">16</span>°C|F</p>
+        </div>
+        <div class="col-4">
+          <ul>
+            <li>High:</li>
+            <li>Low</li>
+            <li>Humidity</li>
+            <li>Wind</li>
+          </ul>
+          <div class="forecast">4 day forecast</div>
+          <ul>
+            <li>Thurs</li>
+            <li>Fri</li>
+            <li>Sat</li>
+            <li>Sun</li>
+          </ul>
+        </div>
+      </div>
     </div>
     <script src="src/app.js"></script>
   </body>

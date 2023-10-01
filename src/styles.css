@@ -1,4 +1,25 @@
-h1 {
-  color: red;
-  text-align: center;
+.container {
+  background-color: grey;
+  max-width: 720px;
+}
+.search-container {
+  display: inline;
+  margin: 25px 0 0 10px;
+  font-size: 14px;
+  font-weight: 200;
+  opacity: 70%;
+}
+.form,
+#currentButton {
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+#currentButton {
+  margin-left: 5px;
+}
+.search-container {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 10vh;
 }
