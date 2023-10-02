@@ -36,3 +36,29 @@ if (minutes < 10) {
   minutes = `0${minutes}`;
 }
 timeDate.innerHTML = `${day}, ${month} ${date}, ${hours}:${minutes}`;
+
+function showTemp(response) {
+  let temp = Math.round(response.data.main.temp);
+  let highTemp = Math.round(response.data.main.temp_max);
+  let lowTemp = Math.round(response.data.main.temp_min);
+  document.querySelector("h1").innerHTML = response.data.name;
+  document.querySelector("#today").innerHTML = `${temp}°C`;
+  document.querySelector("#low").innerHTML = `L:${lowTemp}°C`;
+  document.querySelector("#high").innerHTML = `H:${highTemp}°C`;
+  document.querySelector("#description").innerHTML =
+    response.data.weather[0].main;
+}
+function searchCity(city) {
+  let unit = "metric";
+  let apiKey = "0a7aef75306a5034895471348f6ec8db";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
+  axios.get(apiUrl).then(showTemp);
+}
+function handleSubmit(event) {
+  event.preventDefault();
+
+  let city = document.querySelector("#search-text-input").value;
+  searchCity(city);
+}
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);

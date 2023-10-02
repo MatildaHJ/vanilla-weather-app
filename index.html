@@ -15,6 +15,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Weather App</title>
   </head>
   <body>
@@ -45,7 +46,7 @@
           <br />
           <br />
           <p>
-            <span class="degrees">16</span>°<a href="" id="celciusC">C</a> |<a
+            <span class="degrees">16</span>°<a href="" id="celciusC">C</a>|<a
               href=""
               id="fahrenheitF"
               >F</a
@@ -53,18 +54,18 @@
           </p>
         </div>
         <div class="col-4">
-          <ul>
-            <li>High:</li>
-            <li>Low:</li>
-            <li>Humidity:</li>
-            <li>Windspeed:</li>
+          <ul class="details">
+            <li>High <span class="high">18°C</span></li>
+            <li>Low <span class="low">10°C</span></li>
+            <li>Humidity <span class="humidity">30%</span></li>
+            <li>Windspeed <span class="wind">4m/s</span></li>
           </ul>
-          <div class="forecast">4 day forecast</div>
-          <ul>
-            <li>Thurs</li>
-            <li>Fri</li>
-            <li>Sat</li>
-            <li>Sun</li>
+          <ul class="forecastUl">
+            <li class="forecastHead">4 day forecast</li>
+            <li class="forecast">Thurs</li>
+            <li class="forecast">Fri</li>
+            <li class="forecast">Sat</li>
+            <li class="forecast">Sun</li>
           </ul>
         </div>
       </div>
