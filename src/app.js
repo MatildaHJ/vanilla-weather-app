@@ -42,7 +42,7 @@ function showTemp(response) {
   let highTemp = Math.round(response.data.main.temp_max);
   let lowTemp = Math.round(response.data.main.temp_min);
   document.querySelector("h1").innerHTML = response.data.name;
-  document.querySelector("#today").innerHTML = `${temp}°C`;
+  document.querySelector("#degrees").innerHTML = `${temp}°C`;
   document.querySelector("#low").innerHTML = `L:${lowTemp}°C`;
   document.querySelector("#high").innerHTML = `H:${highTemp}°C`;
   document.querySelector("#description").innerHTML =
@@ -62,3 +62,8 @@ function handleSubmit(event) {
 }
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+let theme = document.querySelector("#bgImage");
+if (hours > 19) {
+  theme.style.backgroundImage = 'url("src/bgNight.jpeg")';
+}
