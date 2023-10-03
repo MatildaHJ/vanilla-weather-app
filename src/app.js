@@ -65,6 +65,20 @@ function handleSubmit(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
+function change(event) {
+  event.preventDefault();
+  let units = document.querySelector("#degrees");
+  let link = document.querySelector("#fahrenheit");
+  let lowTemp = document.querySelector("#low");
+  let highTemp = document.querySelector("#high");
+  units.innerHTML = "32°F";
+  link.innerHTML = "See in Celcius";
+  lowTemp.innerHTML = "L: 25°F";
+  highTemp.innerHTML = "H: 36°F";
+}
+let link = document.querySelector("#fahrenheit");
+link.addEventListener("click", change);
+
 let theme = document.querySelector("#bgImage");
 if (hours > 19) {
   theme.style.backgroundImage = 'url("src/bgNight.jpeg")';
