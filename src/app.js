@@ -43,10 +43,12 @@ function showTemp(response) {
   let lowTemp = Math.round(response.data.main.temp_min);
   document.querySelector("h1").innerHTML = response.data.name;
   document.querySelector("#degrees").innerHTML = `${temp}°C`;
-  document.querySelector("#low").innerHTML = `L:${lowTemp}°C`;
-  document.querySelector("#high").innerHTML = `H:${highTemp}°C`;
-  document.querySelector("#description").innerHTML =
-    response.data.weather[0].main;
+  document.querySelector("#low").innerHTML = `${lowTemp}°C`;
+  document.querySelector("#high").innerHTML = `${highTemp}°C`;
+  document.querySelector("#todayWeather").innerHTML =
+    response.data.weather[0].description;
+  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
+  document.querySelector("#wind").innerHTML = response.data.wind.speed;
 }
 function searchCity(city) {
   let unit = "metric";
@@ -67,3 +69,4 @@ let theme = document.querySelector("#bgImage");
 if (hours > 19) {
   theme.style.backgroundImage = 'url("src/bgNight.jpeg")';
 }
+searchCity("Stockholm");
