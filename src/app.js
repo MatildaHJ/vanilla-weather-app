@@ -82,5 +82,9 @@ link.addEventListener("click", change);
 let theme = document.querySelector("#bgImage");
 if (hours > 19) {
   theme.style.backgroundImage = 'url("src/bgNight.jpeg")';
+} else {
+  if (hours < 6) {
+    theme.style.backgroundImage = 'url("src/bgNight.jpeg")';
+  }
 }
 searchCity("Stockholm");

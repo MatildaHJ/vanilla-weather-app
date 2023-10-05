@@ -51,19 +51,38 @@
           </p>
         </div>
         <div class="col-4">
-          <ul class="details">
-            <li>High <span id="high"></span></li>
-            <li>Low <span id="low"></span></li>
-            <li>Humidity <span id="humidity"></span></li>
-            <li>Windspeed <span id="wind"></span></li>
-          </ul>
-          <ul class="forecastUl">
-            <li class="forecastHead">4 day forecast</li>
-            <li class="forecast">Thurs</li>
-            <li class="forecast">Fri</li>
-            <li class="forecast">Sat</li>
-            <li class="forecast">Sun</li>
-          </ul>
+          <div class="row">
+            <div class="col-7">
+              <ul class="details">
+                <li>High</li>
+                <li>Low</li>
+                <li>Humidity</li>
+                <li>Windspeed</li>
+              </ul>
+              <ul class="forecastUl">
+                <li class="forecastHead">Forecast</li>
+                <li class="forecastFirstDay">Thurs</li>
+                <li class="forecastSecondDay">Fri</li>
+                <li class="forecastThirdDay">Sat</li>
+                <li class="forecastFourthDay">Sun</li>
+              </ul>
+            </div>
+            <div class="col-5">
+              <ul>
+                <li><span id="high"></span></li>
+                <li><span id="low"></span></li>
+                <li><span id="humidity"></span></li>
+                <li><span id="wind"></span></li>
+              </ul>
+              <ul>
+                <li class="forecastHead">H/L</li>
+                <li><span id="firstDay"></span></li>
+                <li><span id="secondDay"></span></li>
+                <li><span id="thirdDay"></span></li>
+                <li><span id="fourthDay"></span></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

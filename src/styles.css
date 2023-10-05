@@ -45,6 +45,8 @@ p {
 }
 #fahrenheit {
   font-size: 12px;
+  margin-left: 20px;
+  color: rgba(255, 255, 255, 0.667);
 }
 a {
   text-decoration: none;
@@ -63,12 +65,15 @@ ul {
   padding: 20px 0;
   margin-left: 20px;
 }
-.details {
+
+.details,
+.col-5 {
   margin-top: 70px;
 }
 .forecastHead {
   margin-bottom: 10px;
 }
+
 .forecastUl {
   margin-bottom: 70px;
 }
