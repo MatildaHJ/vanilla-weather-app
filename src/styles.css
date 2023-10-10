@@ -22,12 +22,16 @@ small {
   opacity: 70%;
 }
 .form,
-#currentButton {
+#currentButton,
+#searchButton {
   border-radius: 20px;
   padding: 4px 10px;
 }
 #currentButton {
   margin-left: 5px;
+}
+#searchButton:hover {
+  background-color: rgb(213, 213, 213);
 }
 .search-container {
   display: flex;
