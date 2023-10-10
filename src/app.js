@@ -38,8 +38,9 @@ if (minutes < 10) {
 timeDate.innerHTML = `${day}, ${month} ${date}, ${hours}:${minutes}`;
 
 function showTemp(response) {
+  celsiusTemp = response.data.main.temp;
   let icon = document.querySelector("#todayIcon");
-  let temp = Math.round(response.data.main.temp);
+  let temp = Math.round(celsiusTemp);
   let highTemp = Math.round(response.data.main.temp_max);
   let lowTemp = Math.round(response.data.main.temp_min);
   let description = response.data.weather[0].description;
@@ -48,7 +49,8 @@ function showTemp(response) {
   document.querySelector("#low").innerHTML = `${lowTemp}°C`;
   document.querySelector("#high").innerHTML = `${highTemp}°C`;
   document.querySelector("#todayWeather").innerHTML =
-    response.data.weather[0].description;
+    response.data.weather[0].description.charAt(0).toUpperCase() +
+    response.data.weather[0].description.slice(1);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = response.data.wind.speed;
   if (description.includes("clouds")) {
@@ -91,19 +93,24 @@ function handleSubmit(event) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-function change(event) {
+function changeUnit(event) {
   event.preventDefault();
-  let units = document.querySelector("#degrees");
   let link = document.querySelector("#fahrenheit");
-  let lowTemp = document.querySelector("#low");
-  let highTemp = document.querySelector("#high");
-  units.innerHTML = "32°F";
-  link.innerHTML = "See in Celcius";
-  lowTemp.innerHTML = "L: 25°F";
-  highTemp.innerHTML = "H: 36°F";
+  let tempElement = document.querySelector("#degrees");
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  if (link.innerHTML === "See in Fahrenheit") {
+    tempElement.innerHTML = Math.round(fahrenheitTemp) + "°F";
+    link.innerHTML = "See in Celsius";
+  } else {
+    tempElement.innerHTML = Math.round(celsiusTemp) + "°C";
+    link.innerHTML = "See in Fahrenheit";
+  }
 }
+
 let link = document.querySelector("#fahrenheit");
-link.addEventListener("click", change);
+link.addEventListener("click", changeUnit);
+
+let celsiusTemp = null;
 
 let theme = document.querySelector("#bgImage");
 if (hours > 19) {
