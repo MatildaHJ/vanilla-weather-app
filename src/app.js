@@ -38,9 +38,11 @@ if (minutes < 10) {
 timeDate.innerHTML = `${day}, ${month} ${date}, ${hours}:${minutes}`;
 
 function showTemp(response) {
+  let icon = document.querySelector("#todayIcon");
   let temp = Math.round(response.data.main.temp);
   let highTemp = Math.round(response.data.main.temp_max);
   let lowTemp = Math.round(response.data.main.temp_min);
+  let description = response.data.weather[0].description;
   document.querySelector("h1").innerHTML = response.data.name;
   document.querySelector("#degrees").innerHTML = `${temp}°C`;
   document.querySelector("#low").innerHTML = `${lowTemp}°C`;
@@ -49,7 +51,31 @@ function showTemp(response) {
     response.data.weather[0].description;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = response.data.wind.speed;
+  if (description.includes("clouds")) {
+    icon.innerHTML = `<i class="fa-solid fa-cloud"></i>`;
+  } else if (description === "clear sky") {
+    icon.innerHTML = `<i class="fa-solid fa-sun"></i>`;
+  } else if (description.includes("drizzle") || description.includes("rain")) {
+    icon.innerHTML = `<i class="fa-solid fa-cloud-rain"></i>`;
+  } else if (description.includes("shower") && description.includes("rain")) {
+    icon.innerHTML = `<i class="fa-solid fa-cloud-showers-heavy"></i>`;
+  } else if (description.includes("thunderstorm")) {
+    icon.innerHTML = `<i class="fa-solid fa-cloud-bolt"></i>`;
+  } else if (description.includes("snow") || description.includes("sleet")) {
+    icon.innerHTML = `<i class="fa-solid fa-snowflake"></i>`;
+  } else if (
+    description.includes("mist") ||
+    description.includes("fog") ||
+    description.includes("haze") ||
+    description.includes("smoke") ||
+    description.includes("sand") ||
+    description.includes("dust") ||
+    description.includes("ash")
+  ) {
+    icon.innerHTML = `<i class="fa-solid fa-smog"></i>`;
+  }
 }
+
 function searchCity(city) {
   let unit = "metric";
   let apiKey = "0a7aef75306a5034895471348f6ec8db";
@@ -81,10 +107,10 @@ link.addEventListener("click", change);
 
 let theme = document.querySelector("#bgImage");
 if (hours > 19) {
-  theme.style.backgroundImage = 'url("src/bgNight.jpeg")';
+  theme.style.backgroundImage = 'url("src/bgNight.jpg")';
 } else {
-  if (hours < 6) {
-    theme.style.backgroundImage = 'url("src/bgNight.jpeg")';
+  if (hours < 7) {
+    theme.style.backgroundImage = 'url("src/bgNight.jpg")';
   }
 }
 searchCity("Stockholm");
