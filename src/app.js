@@ -39,10 +39,12 @@ timeDate.innerHTML = `${day}, ${month} ${date}, ${hours}:${minutes}`;
 
 function showTemp(response) {
   celsiusTemp = response.data.main.temp;
+  maxTemp = response.data.main.temp_max;
+  minTemp = response.data.main.temp_min;
   let icon = document.querySelector("#todayIcon");
   let temp = Math.round(celsiusTemp);
-  let highTemp = Math.round(response.data.main.temp_max);
-  let lowTemp = Math.round(response.data.main.temp_min);
+  let highTemp = Math.round(maxTemp);
+  let lowTemp = Math.round(minTemp);
   let description = response.data.weather[0].description;
   document.querySelector("h1").innerHTML = response.data.name;
   document.querySelector("#degrees").innerHTML = `${temp}°C`;
@@ -98,19 +100,29 @@ function changeUnit(event) {
   let link = document.querySelector("#fahrenheit");
   let tempElement = document.querySelector("#degrees");
   let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  let minFahrenheit = (minTemp * 9) / 5 + 32;
+  let maxFahrenheit = (maxTemp * 9) / 5 + 32;
   if (link.innerHTML === "See in Fahrenheit") {
     tempElement.innerHTML = Math.round(fahrenheitTemp) + "°F";
+    lowTempElement.innerHTML = Math.round(minFahrenheit) + "°F";
+    highTempElement.innerHTML = Math.round(maxFahrenheit) + "°F";
     link.innerHTML = "See in Celsius";
   } else {
     tempElement.innerHTML = Math.round(celsiusTemp) + "°C";
+    lowTempElement.innerHTML = Math.round(minTemp) + "°C";
+    highTempElement.innerHTML = Math.round(maxTemp) + "°C";
     link.innerHTML = "See in Fahrenheit";
   }
 }
+let lowTempElement = document.querySelector("#low");
+let highTempElement = document.querySelector("#high");
 
 let link = document.querySelector("#fahrenheit");
 link.addEventListener("click", changeUnit);
 
 let celsiusTemp = null;
+let maxTemp = null;
+let minTemp = null;
 
 let theme = document.querySelector("#bgImage");
 if (hours > 19) {
