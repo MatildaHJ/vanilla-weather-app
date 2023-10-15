@@ -54,6 +54,15 @@ function displayForecast() {
   forecastElement.innerHTML = forecastHTML;
 }
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "bf3o0930bd56bb8b43fbe8a4cftca0a1";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.lon}&lat=${coordinates.lat}&key=${apiKey}&units=metric
+`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function showTemp(response) {
   celsiusTemp = response.data.main.temp;
   maxTemp = response.data.main.temp_max;
@@ -95,6 +104,7 @@ function showTemp(response) {
   ) {
     icon.innerHTML = `<i class="fa-solid fa-smog"></i>`;
   }
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -150,4 +160,3 @@ if (hours > 19) {
   }
 }
 searchCity("Stockholm");
-displayForecast();
