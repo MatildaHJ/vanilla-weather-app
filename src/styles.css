@@ -82,15 +82,19 @@ ul {
 }
 
 .details,
-.col-5 {
-  margin-top: 70px;
+.col-md-5,
+.col-1 {
+  margin-top: 85px;
 }
 .forecastHead {
   margin-bottom: 10px;
 }
-
-.forecastUl {
-  margin-bottom: 70px;
+.forecastIcons {
+  margin-top: 187px;
+}
+#forecastResults,
+.forecastHead {
+  text-align: center;
 }
 small {
   font-size: 10px;

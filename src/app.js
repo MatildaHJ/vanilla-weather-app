@@ -37,6 +37,23 @@ if (minutes < 10) {
 }
 timeDate.innerHTML = `${day}, ${month} ${date}, ${hours}:${minutes}`;
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecastResults");
+
+  let forecastHTML = "";
+  let days = ["first", "second", "third", "fourth", "fifth"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+   <span id="firstDayMin">9°</span>/<span id="firstDayMax"
+                      >11°</span
+                    >`;
+  });
+
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function showTemp(response) {
   celsiusTemp = response.data.main.temp;
   maxTemp = response.data.main.temp_max;
@@ -133,3 +150,4 @@ if (hours > 19) {
   }
 }
 searchCity("Stockholm");
+displayForecast();
