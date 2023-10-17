@@ -37,29 +37,34 @@ if (minutes < 10) {
 }
 timeDate.innerHTML = `${day}, ${month} ${date}, ${hours}:${minutes}`;
 
-function displayForecast() {
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecastResults");
 
   let forecastHTML = "";
-  let days = ["first", "second", "third", "fourth", "fifth"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-   <span id="firstDayMin">9°</span>/<span id="firstDayMax"
-                      >11°</span
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
+   <span id="firstDayMin">${Math.round(
+     forecastDay.temperature.minimum
+   )}°</span>/<span id="firstDayMax"
+                      >${Math.round(forecastDay.temperature.maximum)}°</span
                     >`;
+    }
   });
 
   forecastElement.innerHTML = forecastHTML;
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
   let apiKey = "bf3o0930bd56bb8b43fbe8a4cftca0a1";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.lon}&lat=${coordinates.lat}&key=${apiKey}&units=metric
 `;
   console.log(apiUrl);
+
   axios.get(apiUrl).then(displayForecast);
 }
 
