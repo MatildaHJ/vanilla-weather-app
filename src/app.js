@@ -37,6 +37,29 @@ if (minutes < 10) {
 }
 timeDate.innerHTML = `${day}, ${month} ${date}, ${hours}:${minutes}`;
 
+function formatDay(timeStamp) {
+  let date = new Date(timeStamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+  return days[day];
+}
+let forecastDayList = document.querySelector("#forecastDays");
+let forecastDaysHTML = "";
+
+let timestamps = [
+  1697623200, 1697709600, 1697796000, 1697882400, 1697968800, 1698055200,
+];
+
+timestamps.forEach(function (timeStamp, index) {
+  if (index < 5) {
+    let formattedDay = formatDay(timeStamp);
+
+    forecastDaysHTML += `<li id="forecastDays">${formattedDay}</li>`;
+  }
+});
+
+forecastDayList.innerHTML = forecastDaysHTML;
+
 function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecastResults");
@@ -84,8 +107,9 @@ function showTemp(response) {
   document.querySelector("#todayWeather").innerHTML =
     response.data.weather[0].description.charAt(0).toUpperCase() +
     response.data.weather[0].description.slice(1);
-  document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  document.querySelector("#wind").innerHTML = response.data.wind.speed;
+  document.querySelector("#humidity").innerHTML =
+    response.data.main.humidity + "%";
+  document.querySelector("#wind").innerHTML = response.data.wind.speed + "m/s";
   if (description.includes("clouds")) {
     icon.innerHTML = `<i class="fa-solid fa-cloud"></i>`;
   } else if (description === "clear sky") {
