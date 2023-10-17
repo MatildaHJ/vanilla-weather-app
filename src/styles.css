@@ -1,3 +1,6 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
 #bgImage {
   background-image: url("bgDay.jpeg");
 }
@@ -41,6 +44,7 @@ small {
 }
 h1 {
   font-size: 50px;
+  font-weight: bold;
 }
 h1,
 #timeDate,

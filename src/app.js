@@ -75,7 +75,7 @@ function displayForecast(response) {
      forecastDay.temperature.minimum
    )}°</span>/<span id="firstDayMax"
                       >${Math.round(forecastDay.temperature.maximum)}°</span
-                    >`;
+                    ><br />`;
     }
   });
 
