@@ -135,6 +135,20 @@ function showTemp(response) {
   }
   getForecast(response.data.coord);
 }
+function handlePosition(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiKey = "0a7aef75306a5034895471348f6ec8db";
+  let apiUrl2 = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl2).then(showTemp);
+}
+
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(handlePosition);
+}
+
+let button = document.querySelector("#currentButton");
+button.addEventListener("click", getCurrentPosition);
 
 function searchCity(city) {
   let unit = "metric";
