@@ -44,7 +44,7 @@ small {
 }
 h1 {
   font-size: 50px;
-  font-weight: bold;
+  font-weight: 600;
 }
 h1,
 #timeDate,

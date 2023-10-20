@@ -43,31 +43,17 @@ function formatDay(timeStamp) {
   let days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
   return days[day];
 }
-let forecastDayList = document.querySelector("#forecastDays");
-let forecastDaysHTML = "";
-
-let timestamps = [
-  1697623200, 1697709600, 1697796000, 1697882400, 1697968800, 1698055200,
-];
-
-timestamps.forEach(function (timeStamp, index) {
-  if (index < 5) {
-    let formattedDay = formatDay(timeStamp);
-
-    forecastDaysHTML += `<li id="forecastDays">${formattedDay}</li>`;
-  }
-});
-
-forecastDayList.innerHTML = forecastDaysHTML;
 
 function displayForecast(response) {
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecastResults");
+  let forecastDayList = document.querySelector("#forecastDays");
 
+  let forecastDaysHTML = "";
   let forecastHTML = "";
 
   forecast.forEach(function (forecastDay, index) {
-    if (index < 5) {
+    if (index < 6 && index > 0) {
       forecastHTML =
         forecastHTML +
         `
@@ -76,10 +62,14 @@ function displayForecast(response) {
    )}°</span>/<span id="firstDayMax"
                       >${Math.round(forecastDay.temperature.maximum)}°</span
                     ><br />`;
+
+      let formattedDay = formatDay(forecastDay.time);
+      forecastDaysHTML += `<li id="forecastDays">${formattedDay}</li>`;
     }
   });
 
   forecastElement.innerHTML = forecastHTML;
+  forecastDayList.innerHTML = forecastDaysHTML;
 }
 
 function getForecast(coordinates) {
